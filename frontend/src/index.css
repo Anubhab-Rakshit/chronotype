@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', serif;
+
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-tertiary: rgba(255, 255, 255, 0.35);
+  --color-accent-blue: #3B82F6;
+  --color-accent-emerald: #10B981;
+  --color-accent-danger: #EF4444;
+  --color-accent-amber: #F59E0B;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-[#F5F5F5] antialiased transition-colors duration-500 h-screen w-screen overflow-hidden;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    selection: bg-white text-black;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .hairline-card {
+    @apply bg-black/60 backdrop-blur-3xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] rounded-[2.5rem] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(255,255,255,0.02)] relative overflow-hidden;
+  }
+  
+  .hairline-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.05),
+      transparent 40%
+    );
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+  }
+  .hairline-card:hover::before {
+    opacity: 1;
+  }
+
+  .glass-card {
+    @apply bg-[#111111]/40 backdrop-blur-2xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-3xl p-6 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(255,255,255,0.03)] relative overflow-hidden;
+  }
+
+  /* Spotlight Neuromorphism glowing orb */
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    );
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+  }
+  .glass-card:hover::before {
+    opacity: 1;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 0px;
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden bg-white/10 text-white backdrop-blur-md border border-white/20 shadow-[0_4px_15px_rgba(255,255,255,0.05)] font-mono uppercase tracking-widest text-xs px-8 py-4 hover:bg-white/20 hover:shadow-[0_8px_25px_rgba(255,255,255,0.1)] transition-all flex items-center justify-center rounded-full cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-white font-mono uppercase tracking-widest text-xs px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all flex items-center justify-center rounded-full cursor-pointer;
+  }
+}

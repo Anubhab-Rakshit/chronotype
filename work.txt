@@ -1,0 +1,151 @@
+Description *
+Build a Typing Speed Game full-stack application where users test their typing speed by entering randomly generated alphabets using their keyboard.
+This assignment is designed to evaluate how you approach frontend development, backend development, GraphQL API design, database modeling, authentication, state management, validation, and code quality. You should aim for a clean, working, maintainable implementation without unnecessary features.
+Time & Submission
+Expected effort: 2–3 days
+Submission window: 3–5 days
+Submit your GitHub repository link
+Include a short walkthrough of your implementation and key technical decisions. This can be a Loom video or a short written walkthrough.
+Important
+Please focus only on the requirements mentioned in this assignment. We are primarily interested in how you think, structure the solution, handle edge cases, and communicate your technical decisions.
+
+Problem Statement
+Build a Typing Speed Game Application where users can test their typing speed by completing a sequence of randomly generated alphabets.
+The application should allow users to:
+Start a typing challenge with a timer starting from 0 seconds.
+Type 20 randomly generated alphabets using the keyboard.
+Display one alphabet at a time.
+Move to the next alphabet only when the correct key is entered.
+Apply a 0.5 second penalty for every incorrect key press.
+Keep the keyboard/input focused throughout the game.
+Display progress, such as 10 / 20.
+Display the final score after completing all 20 characters.
+Show Success if the user beats their previous best score; otherwise show Failure/Try Again.
+Treat a lower completion time as a better score.
+Store the best score locally.
+Allow users to restart and play again.
+You are free to design the interface in your own style.
+
+Frontend
+You may use a frontend technology/framework of your choice, such as:
+React
+Next.js
+Vue
+Angular
+Any other suitable frontend framework
+The frontend should include:
+Clean and responsive UI.
+Game screen displaying the current alphabet, timer, progress, and result.
+Proper keyboard event handling.
+Automatic focus on the input/keyboard during gameplay.
+Restart/play-again functionality.
+Local high-score persistence.
+Integration with the backend.
+
+Backend & API
+Use the following technologies:
+Bun + TypeScript
+GraphQL Yoga
+PostgreSQL
+Prisma
+Docker Compose
+The backend should support:
+User registration and login.
+Saving completed game results.
+Retrieving the user's game history.
+Retrieving the user's best score.
+Providing a leaderboard with the best scores.
+Example:
+Rank   Player     Best Time
+1      Alex       8.42s
+2      John       9.15s
+3      Sarah      9.87s
+
+Database
+Use PostgreSQL with Prisma.
+The database should store information such as:
+Users
+Game results
+Score/time
+Correct characters
+Wrong attempts
+Penalty time
+Created timestamps
+A game result should be associated with the user who played the game.
+
+GraphQL
+Expose the application functionality through GraphQL.
+The API should provide operations for:
+Registering a user
+Logging in
+Getting the current user
+Saving a game result
+Getting the user's game history
+Getting the user's best score
+Getting the leaderboard
+You are free to design the GraphQL schema based on your implementation.
+
+Authentication
+Implement user authentication.
+The application should support:
+User registration
+User login
+Secure password storage
+Authenticated game-result submission
+Access to the user's own game history
+A user should not be able to access or modify another user's private game data.
+
+Docker Compose
+Provide a docker-compose.yml to make the application easy to run locally.
+The setup should include the required services for the application, including the PostgreSQL database.
+The README should clearly explain how to start the project using Docker Compose.
+
+Code Quality
+The implementation should include:
+Clean and maintainable code structure.
+Reusable frontend components.
+Proper validation.
+Proper error handling.
+Meaningful variable and function names.
+Environment variables for configuration and secrets.
+No hard-coded credentials.
+Clear separation of responsibilities.
+Meaningful README with setup instructions.
+
+Testing
+Add tests for important functionality.
+Examples:
+Correct character handling.
+Incorrect character and penalty calculation.
+Game completion.
+High-score calculation.
+User registration/login.
+Saving game results.
+Leaderboard ordering.
+
+Bonus Features
+The following are optional:
+Automated integration tests.
+Real-time leaderboard.
+GraphQL subscriptions.
+Redis caching.
+MongoDB activity/event logging.
+Game statistics and analytics.
+Dockerized frontend and backend.
+CI/CD setup.
+Dark mode.
+Different game difficulty levels.
+
+Deliverables
+Submit a GitHub repository containing:
+Frontend application
+Backend application
+GraphQL schema
+Prisma schema and migrations
+Docker Compose configuration
+Tests
+README
+.env.example
+The README should include instructions for setting up and running the application locally.
+Focus on building a clean, well-structured solution that demonstrates good engineering practices without over-engineering.
+
