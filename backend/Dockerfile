@@ -12,8 +12,6 @@ RUN bunx prisma generate
 
 FROM base AS runner
 ENV NODE_ENV=production
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 bunuser
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
@@ -21,7 +19,7 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/package.json ./package.json
 RUN bunx prisma generate
 
-USER bunuser
+USER bun
 
 EXPOSE 4000
 
