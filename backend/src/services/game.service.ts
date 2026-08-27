@@ -121,28 +121,28 @@ export async function getLeaderboard(limit: number) {
   >`
     WITH user_best AS (
       SELECT
-        gr.userId,
-        gr.totalTime AS bestTime,
+        gr."userId",
+        gr."totalTime" AS "bestTime",
         gr.accuracy,
-        ROW_NUMBER() OVER (PARTITION BY gr.userId ORDER BY gr.totalTime ASC) AS rn
+        ROW_NUMBER() OVER (PARTITION BY gr."userId" ORDER BY gr."totalTime" ASC) AS rn
       FROM game_results gr
     ),
     user_games AS (
       SELECT
-        userId,
+        "userId",
         COUNT(*) AS "gamesPlayed"
       FROM game_results
-      GROUP BY userId
+      GROUP BY "userId"
     )
     SELECT
-      ub.userId,
+      ub."userId",
       u.username,
       ub."bestTime",
       ub.accuracy,
       ug."gamesPlayed"
     FROM user_best ub
-    JOIN users u ON u.id = ub.userId
-    JOIN user_games ug ON ug.userId = ub.userId
+    JOIN users u ON u.id = ub."userId"
+    JOIN user_games ug ON ug."userId" = ub."userId"
     WHERE ub.rn = 1
     ORDER BY ub."bestTime" ASC
     LIMIT ${limit}
