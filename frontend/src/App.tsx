@@ -7,6 +7,7 @@ import { ResultsModal } from './components/ResultsModal';
 import { LeaderboardView } from './components/LeaderboardView';
 import { HistoryView } from './components/HistoryView';
 import { AuthModal } from './components/AuthModal';
+import { BootSequence } from './components/BootSequence';
 import { useTypingEngine } from './hooks/useTypingEngine';
 import { useSoundEffects } from './hooks/useSoundEffects';
 import { audio } from './services/AudioEngine';
@@ -14,10 +15,12 @@ import { audio } from './services/AudioEngine';
 function App() {
   const { playSound, isMuted, setIsMuted } = useSoundEffects();
   const { state, restart } = useTypingEngine(playSound);
+  const { isFinished } = state;
 
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
+  const [hasBooted, setHasBooted] = useState(false);
 
   // Global Hotkeys: ESC to restart arena or close active modals
   useEffect(() => {
@@ -41,8 +44,10 @@ function App() {
 
   return (
     <div className="h-screen w-screen bg-black text-[#F5F5F5] relative selection:bg-white selection:text-black overflow-hidden flex flex-col">
+      {!hasBooted && <BootSequence onComplete={() => setHasBooted(true)} />}
       {/* SplitStellar Liquid Smoke Flow-Field Background */}
       <CanvasFluidBackground />
+      <div className="film-grain" />
 
       {/* Floating Notchbar Navigation */}
       <Navbar
@@ -54,7 +59,11 @@ function App() {
       />
 
       {/* Main Interactive Stage */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12 gap-4 sm:gap-6 pt-16 pb-6">
+      <main 
+        className={`relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12 gap-4 sm:gap-6 pt-16 pb-6 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isFinished ? 'opacity-0 translate-y-12 pointer-events-none blur-sm' : 'opacity-100 translate-y-0'
+        }`}
+      >
         
         {/* SplitStellar Telemetry Grid (Network State Cards) */}
         <div className="w-full shrink-0">

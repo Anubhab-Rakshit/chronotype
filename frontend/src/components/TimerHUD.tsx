@@ -1,5 +1,6 @@
 import type { TypingGameState } from '../hooks/useTypingEngine';
 import { CornerAnchors } from './CornerAnchors';
+import { AnimatedCounter } from './AnimatedCounter';
 
 interface TimerHUDProps {
   state: TypingGameState;
@@ -78,7 +79,7 @@ export function TimerHUD({ state }: TimerHUDProps) {
               </div>
 
               {/* Massive Hero Typography in Playfair Display Italic */}
-              <div className="relative flex-1 flex items-center justify-center min-h-[100px] sm:min-h-[120px] w-full">
+              <div className="relative flex-1 flex items-center justify-center min-h-[100px] sm:min-h-[120px] w-full mix-blend-exclusion">
                 <div 
                   className={`text-7xl sm:text-8xl lg:text-[100px] font-serif italic tracking-tighter leading-none text-white transition-all duration-150 ${
                     isFinished ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
@@ -129,18 +130,24 @@ export function TimerHUD({ state }: TimerHUDProps) {
               <div className="flex justify-between items-end">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#666]">Speed Velocity</span>
                 <div className="font-mono text-xl sm:text-2xl tracking-tighter text-[#E0E0E0]">
-                  {wpm}<span className="text-[10px] text-[#666] ml-1">WPM</span>
+                  <AnimatedCounter value={wpm} /><span className="text-[10px] text-[#666] ml-1">WPM</span>
                 </div>
               </div>
               <div className="flex justify-between items-end">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#666]">Hit Precision</span>
                 <div className="font-mono text-xl sm:text-2xl tracking-tighter text-[#00FFAA]">
-                  {accuracy.toFixed(0)}<span className="text-[10px] text-[#00FFAA]/50 ml-1">%</span>
+                  <AnimatedCounter value={accuracy} /><span className="text-[10px] text-[#00FFAA]/50 ml-1">%</span>
                 </div>
               </div>
               <div className="flex justify-between items-end pt-3 mt-1 border-t border-white/5">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#555]">Sequence Delta</span>
-                <div className="font-mono text-xs tracking-widest text-[#888]">
+                <div 
+                  className="font-mono text-xs tracking-widest text-[#888] transition-colors duration-100"
+                  style={{ 
+                    color: currentIndex > 0 && currentIndex % 10 === 0 ? '#FFF' : '#888',
+                    textShadow: currentIndex > 0 && currentIndex % 10 === 0 ? '0 0 10px rgba(255,255,255,0.8)' : 'none'
+                  }}
+                >
                   {currentIndex} / {characters.length} CHARS
                 </div>
               </div>

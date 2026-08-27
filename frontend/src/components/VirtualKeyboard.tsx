@@ -60,13 +60,13 @@ export function VirtualKeyboard({ state }: VirtualKeyboardProps) {
               let keyStyle = "w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl font-mono text-xs sm:text-sm transition-all duration-100 ";
               
               if (isLastHitError) {
-                keyStyle += "border border-red-500/80 bg-red-500/25 text-red-400 shadow-[0_0_12px_rgba(239,68,68,0.3)] scale-95";
+                keyStyle += "error-glitch border border-red-500/80 bg-red-500/25 text-red-400";
               } else if (isPressed) {
-                keyStyle += "bg-white text-black border border-white scale-95 shadow-[0_0_15px_rgba(255,255,255,0.4)]";
+                keyStyle += "bg-white text-black border border-white scale-95 shadow-[inset_0_4px_10px_rgba(0,0,0,0.5),0_0_15px_rgba(255,255,255,0.4)]";
               } else if (isTarget) {
                 keyStyle += "border border-emerald-500/80 bg-emerald-500/15 text-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.3)] animate-pulse";
               } else {
-                keyStyle += "border border-white/10 bg-white/5 text-[#888] hover:border-white/20 hover:text-white";
+                keyStyle += "border border-white/10 bg-white/5 text-[#888] hover:border-white/20 hover:text-white shadow-[0_4px_0_rgba(0,0,0,0.4)]";
               }
 
               return (
