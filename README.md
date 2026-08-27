@@ -6,7 +6,8 @@
 
   <p align="center">
     <a href="https://chronotype-rust.vercel.app/"><strong>Live Demo (Vercel)</strong></a> · 
-    <a href="https://chronotype-backend.onrender.com/graphql"><strong>GraphQL API (Render)</strong></a>
+    <a href="https://chronotype-backend.onrender.com/graphql"><strong>GraphQL API (Render)</strong></a> ·
+    <a href="https://youtu.be/JX1ye-e1wHg"><strong>📺 Video Walkthrough (YouTube)</strong></a>
   </p>
 
   <p align="center">
