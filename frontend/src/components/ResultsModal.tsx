@@ -76,7 +76,7 @@ export function ResultsModal({ state, onRestart, onOpenAuth }: ResultsModalProps
               Restart Simulation
             </button>
             
-            {!localStorage.getItem('token') && (
+            {!localStorage.getItem('monkeytype_token') && (
               <button
                 onClick={onOpenAuth}
                 className="flex-1 px-6 py-3 border border-[#00FFAA]/30 bg-[#00FFAA]/10 hover:bg-[#00FFAA]/20 text-[#00FFAA] font-mono text-[10px] uppercase tracking-[0.2em] transition-all"
