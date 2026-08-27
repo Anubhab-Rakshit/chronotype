@@ -14,7 +14,7 @@ const yoga = createYoga({
   graphqlEndpoint: "/graphql",
   landingPage: true,
   cors: {
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://chronotype-rust.vercel.app"],
     credentials: true,
     methods: ["POST", "GET", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
