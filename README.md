@@ -1,6 +1,14 @@
 # ⚡ ChronoType — Full-Stack Typing Speed Arena
 
+**[LIVE DEMO: Play ChronoType on Vercel](https://chronotype-rust.vercel.app/)** 
+
 An **Awwwards-caliber**, production-grade typing speed game application built to evaluate full-stack engineering, GraphQL API design, database modeling, secure authentication, state management, procedural audio synthesis, and high-performance frontend micro-interactions.
+
+## 🌍 Live Deployments
+- **Frontend (Vercel)**: [https://chronotype-rust.vercel.app/](https://chronotype-rust.vercel.app/)
+- **Backend (Render)**: [https://chronotype-backend.onrender.com/graphql](https://chronotype-backend.onrender.com/graphql)
+- **Database (Supabase)**: PostgreSQL 16
+- **Caching & Subscriptions (Upstash)**: Serverless Redis
 
 ---
 
@@ -24,7 +32,8 @@ An **Awwwards-caliber**, production-grade typing speed game application built to
 ### ⚙️ Backend & Infrastructure (OpenCode)
 - **Runtime**: [Bun v1.3](https://bun.sh) + TypeScript for ultra-fast execution.
 - **GraphQL Engine**: [GraphQL Yoga v5](https://the-guild.dev/graphql/yoga-server) with full CORS support and Bearer JWT context injection.
-- **Database & ORM**: PostgreSQL 16 + Prisma ORM with composite indexes (`totalTime ASC`, `userId, completedAt DESC`).
+- **Database & ORM**: PostgreSQL 16 (Hosted on Supabase) + Prisma ORM with composite indexes.
+- **Caching & Rate Limiting**: Upstash Serverless Redis via `ioredis` for ultra-low latency telemetry caching.
 - **Security & Auth**: JWT authentication (`jose`), password hashing with bcrypt cost 10, and Zod input validation schemas.
 - **Server-Side Verification**: Strict backend mathematical validation on score submission (`expectedPenalty = wrongAttempts * 0.5`, `expectedTotal = rawTime + expectedPenalty`).
 - **Global Leaderboard**: Optimized SQL queries aggregating distinct player personal bests sorted by fastest time.
@@ -37,13 +46,13 @@ An **Awwwards-caliber**, production-grade typing speed game application built to
 ┌─────────────────────────────────────────────────────────────┐
 │                       PROJECT STRUCTURE                     │
 ├──────────────────────────────┬──────────────────────────────┤
-│ 🎨 FRONTEND (React 19+Vite)  │ ⚙️ BACKEND (Bun+Yoga+Prisma) │
+│ 🎨 FRONTEND (Vercel)         │ ⚙️ BACKEND (Render Docker)   │
 ├──────────────────────────────┼──────────────────────────────┤
-│ • useTypingEngine (20-char)  │ • PostgreSQL 16 DB           │
-│ • useSoundEffects (WebAudio) │ • Prisma Schema & Migration  │
-│ • VirtualKeyboard (3D CSS)   │ • JWT Auth & Bcrypt          │
-│ • ParticleCanvas (Mesh)      │ • GraphQL Resolvers & Logic  │
-│ • Apollo Client & Views      │ • Docker Compose Setup       │
+│ • useTypingEngine (20-char)  │ • Supabase PostgreSQL 16     │
+│ • useSoundEffects (WebAudio) │ • Upstash Redis Cache        │
+│ • VirtualKeyboard (3D CSS)   │ • Prisma Schema & Migration  │
+│ • ParticleCanvas (Mesh)      │ • JWT Auth & Bcrypt          │
+│ • Apollo Client & Views      │ • GraphQL Resolvers & Logic  │
 │ • Vitest Test Suite (6/6)    │ • Bun Test Suite (10/10)     │
 └──────────────────────────────┴──────────────────────────────┘
 ```
