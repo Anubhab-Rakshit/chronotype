@@ -30,18 +30,22 @@
 
 ## 📸 Showcase
 
-> **Note:** Add your production screenshots here.
-
 <div align="center">
-  <img src="https://via.placeholder.com/800x450/000000/34D399?text=Hero+HUD+Gameplay+Screenshot" alt="Gameplay HUD" width="800" />
-  <br/>
+  <img src="frontend/public/images/gameplay-hud.png" alt="Gameplay HUD" width="800" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
+  <br/><br/>
   <em>Cinematic Hero HUD & 3D Virtual Keyboard</em>
 </div>
 <br/>
 <div align="center">
-  <img src="https://via.placeholder.com/800x450/000000/34D399?text=Leaderboard+Screenshot" alt="Global Leaderboard" width="800" />
-  <br/>
+  <img src="frontend/public/images/leaderboard.png" alt="Global Leaderboard" width="800" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
+  <br/><br/>
   <em>Global Network State: The Hall of Velocity</em>
+</div>
+<br/>
+<div align="center">
+  <img src="frontend/public/images/telementry.png" alt="Verdict Analysis & Telemetry" width="800" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
+  <br/><br/>
+  <em>Verdict Analysis: Real-time Telemetry & Rank Stamps</em>
 </div>
 
 ---
