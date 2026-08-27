@@ -9,10 +9,7 @@ const registerSchema = z.object({
   password: z.string().min(6),
 });
 
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
-});
+
 
 const JWT_SECRET = new TextEncoder().encode(env.JWT_SECRET);
 
@@ -69,6 +66,11 @@ export async function register(input: z.infer<typeof registerSchema>) {
   };
 }
 
+const loginSchema = z.object({
+  email: z.string().min(1),
+  password: z.string().min(1),
+});
+
 export async function login(input: z.infer<typeof loginSchema>) {
   const parsed = loginSchema.safeParse(input);
   if (!parsed.success) {
@@ -77,9 +79,18 @@ export async function login(input: z.infer<typeof loginSchema>) {
 
   const { email, password } = parsed.data;
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  // `email` can actually be the username or the email from the frontend
+  const user = await prisma.user.findFirst({
+    where: {
+      OR: [
+        { email: email },
+        { username: email }
+      ]
+    }
+  });
+  
   if (!user) {
-    throw new Error("Invalid email or password");
+    throw new Error("Invalid credentials");
   }
 
   const valid = await Bun.password.verify(password, user.passwordHash);
